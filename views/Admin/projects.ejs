@@ -1,0 +1,138 @@
+<% include partials/header %>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Projects</h1>
+    </div>
+</div><!--/.row-->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">Managers</div>
+                    <div class="col-md-offset-7 col-xs-offset-6 col-xs-2 text-right">
+                        <a href="#" data-toggle="modal"
+                           data-target="#modelProject"
+                           class="btn btn-info text-center">
+								<span class="visible-xs">
+									<svg class="glyph stroked plus sign">
+									<use xlink:href="#stroked-plus-sign"/>
+									</svg>
+								</span>
+                            <span class="hidden-xs">Add Project</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table data-toggle="table" data-show-refresh="true"
+                       data-show-toggle="true" data-show-columns="true" data-search="true"
+                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
+                       data-sort-order="desc">
+                    <thead>
+                    <tr>
+                        <th data-checkbox="true">ID</th>
+                        <th data-sortable="true">Name</th>
+                        <th data-sortable="true">Duration</th>
+                        <th data-sortable="true">Position</th>
+                        <th data-sortable="true">Using</th>
+                        <th>Description</th>
+                        <th>Images</th>
+                        <th data-sortable="true">Show</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var i = 0; i < data.length; i++) {%>
+                    <tr>
+                        <td data-checkbox="true"><%=data[i]['_id']%></td>
+                        <td><%=data[i]['Name']%></td>
+                        <td><%=data[i]['Duration']%></td>
+                        <td><%=data[i]['Position']%></td>
+                        <td><%=data[i]['Using']%></td>
+                        <td><%=data[i]['Description']%></td>
+                        <td><%=data[i]['Images']%></td>
+                        <td class="text-center"><input disabled type="checkbox" <%=data[i]['Show'] ? "checked=" : ""%> /></td>
+                        <td>
+                            <a href="#" class="edit" data-id="<%=data[i]['_id']%>">Edit</a>
+                            <a href="#" class="delete" onclick="return confirm('Are you sure?')" data-id="<%=data[i]['_id']%>">Delete</a>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div><!--/.row-->
+<!--End replace code here-->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modelProject" aria-labelledby="modelProject">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form role="form" id="frmAdd">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">Add Project</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="form-group">
+                        <label>Project Name</label>
+                        <input class="form-control" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Position</label>
+                        <input class="form-control" name="position" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Duration</label>
+                        <input type="text" name="duration" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Using</label>
+                        <select multiple class="form-control" name="using" required>
+                            <option value="PHP">PHP</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Java">Java</option>
+                            <option value="HTML">HTML</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="imgView">
+                        </div>
+                        <label>Images</label>
+                        <input type="file" multiple name="images">
+                        <p class="help-block">Example block-level help text here.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" rows="3" name="description" required></textarea>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <label>
+                            <input type="checkbox" name="show">Show</label>
+                    </div>
+                    <input type="hidden" name="id" value="">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<% include partials/footer %>

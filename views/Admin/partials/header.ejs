@@ -117,15 +117,15 @@
                                 xlink:href="#stroked-male-user"/></svg> Account</span>
             </a>
             <ul class="children collapse" id="sub-item-2">
-                <li>
-                    <a class="" href="#">
+                <li class="<%= active == 'Account' ? 'active' : '' %>">
+                    <a class="" href="/Admin/Account/">
                         <svg class="glyph stroked chevron-right">
                             <use xlink:href="#stroked-chevron-right"></use>
                         </svg>
-                        Role
+                        Profile
                     </a>
                 </li>
-                <li>
+                <li class="<%= active == 'Account' ? 'active' : '' %>">
                     <a class="" href="#">
                         <svg class="glyph stroked chevron-right">
                             <use xlink:href="#stroked-chevron-right"></use>

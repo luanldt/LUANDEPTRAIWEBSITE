@@ -34,9 +34,9 @@ module.exports = function(passport) {
                     newUser.save(function(err) {
                         if(err) throw err;
                         return done(null, newUser);
-                    })
+                    });
                 }
-            })
+            });
         });
     }));
 
@@ -46,9 +46,8 @@ module.exports = function(passport) {
         passReqToCallback: true
     },
     function(req, email, password, done) {
-        console.log(email, password);
         User.findOne({'local.Email': email}, function(err, user) {
-            if(err) return done(err);
+            if(err) {return done(err);} else
             if(!user) {
                 return done(null, false, req.flash('loginMessage', 'No user found!'));
             }
@@ -56,6 +55,6 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('loginMessage', 'Wrong password'));
             }
             return done(null, user);
-        })
-    }))
+        });
+    }));
 };

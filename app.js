@@ -9,6 +9,7 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var passport = require('passport');
 
+
 var app = express();
 
 var config = require('./config/database');
@@ -39,13 +40,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+
 // Require routers
 var login = require('./routes/login')(passport);
 var index = require('./routes/index');
 var projects = require('./routes/projects');
+var account = require('./routes/account');
 // End require routers
-
-
 
 require('./config/passport')(passport);
 
@@ -56,7 +57,7 @@ require('./config/passport')(passport);
 app.use('/Admin', login);
 app.use('/Admin', index);
 app.use('/Admin/Projects', projects);
-
+app.use('/Admin/Account', account);
 
 
 // catch 404 and forward to error handler

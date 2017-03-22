@@ -41,8 +41,8 @@ router.post('/', function(req, res, next) {
             oldFiled = field;
         }
         if (value) {
-            if (field === 'duration') {
-                var duration = value.split(' - ');
+            if (oldFiled === 'duration') {
+                var duration = value.split('-');
                 project[oldFiled] = duration;
             } else if (oldFiled === 'using') {
                 using.push(value);
@@ -55,7 +55,7 @@ router.post('/', function(req, res, next) {
 
     form.on('file', function(name, file) {
         form.multiples = true;
-        form.uploadDir = path.join(__dirname, '../images')
+        form.uploadDir = path.join(__dirname, '../images');
         if (file) {
             images.push(project["name"] + '_' + file.name);
             project[name] = images;
@@ -86,6 +86,12 @@ router.post('/', function(req, res, next) {
 
 router.delete('/', function(req, res) {
     Projects.delete(req.body.id, function(result) {
+        var files = result.Images;
+        var pathf = path.join(__dirname, '../images');
+        files.forEach((fileName) => {
+            if(fs.existsSync(pathf + '/' + fileName))
+                fs.unlink(pathf + '/' + fileName);
+        })
         res.send(result);
     });
 });
@@ -105,7 +111,7 @@ router.post('/update', function(req, res) {
         }
         if (value) {
             if (field === 'duration') {
-                var duration = value.split(' - ');
+                var duration = value.split('-');
                 project[oldFiled] = duration;
             } else if (oldFiled === 'using') {
                 using.push(value);
@@ -118,7 +124,7 @@ router.post('/update', function(req, res) {
 
     form.on('file', function(name, file) {
         form.multiples = true;
-        form.uploadDir = path.join(__dirname, '../images')
+        form.uploadDir = path.join(__dirname, '../images');
         if (file.name != '') {
             images.push(project["name"] + '_' + file.name);
             project[name] = images;

@@ -1,16 +1,16 @@
 /**
  * Created by nguyenminhluan on 3/19/17.
  */
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var projectSchema = new Schema({
+const projectSchema = new Schema({
     Name: String,
-    Duration: {
-        start: String,
-        end: String
-    },
+    Duration: [
+        String,
+        String
+    ],
     Position: String,
     Using: [String],
     Description: String,
@@ -27,7 +27,7 @@ module.exports = {
      * @returns {boolean}
      */
     create: function(project) {
-        Project.create(project, function(err, project) {
+        Project.create(project, function(err) {
             if (err)
                 throw err;
         });
@@ -40,7 +40,7 @@ module.exports = {
      * @param callBack
      */
     find: function(perpage, page, callBack) {
-        var currentPage = page - 1;
+        const currentPage = page - 1;
         Project.find().skip(perpage * currentPage).limit(perpage)
             .then(function(data){
                 callBack(data);
@@ -85,4 +85,4 @@ module.exports = {
             }
         });
     }
-}
+};

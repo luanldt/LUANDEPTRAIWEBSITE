@@ -1007,8 +1007,24 @@ h1.page-header {
 }
 
 
+/** Styling for cell display images */
 
+.wrap_images {
+    width: 100%;
+    display: inline-flex;
+    flex-flow: row wrap;
+    align-items: center;
+    align-content: center;
+}
 
+.wrap_images img {
+    width: 64px;
+    height: 64px;
+}
+
+.wrap_images a {
+    padding: 0 2.5px;
+}
 
 
 

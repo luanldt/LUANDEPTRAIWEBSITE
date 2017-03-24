@@ -33,7 +33,9 @@ app.use('/images',express.static(path.join(__dirname, 'images')));
 
 // passport
 app.use(session({
-    secret: 'luandeptraiwebsite'
+    secret: 'luandeptraiwebsite',
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());

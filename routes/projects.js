@@ -28,6 +28,9 @@ router.get('/edit/:id', function(req, res) {
 });
 
 router.post('/', function(req, res, next) {
+
+    var number = 0;
+
     // thuc hien viec nap du lieu va upload hinh
 
     var project = [];
@@ -54,12 +57,14 @@ router.post('/', function(req, res, next) {
     });
 
     form.on('file', function(name, file) {
+        var extension = file.name.substring(file.name.indexOf('.'), file.name.length);
         form.multiples = true;
         form.uploadDir = path.join(__dirname, '../images');
-        if (file) {
-            images.push(project["name"] + '_' + file.name);
+        if (file.name !== '') {
+            images.push(project["name"] + '_' + number + extension);
             project[name] = images;
-            fs.rename(file.path, path.join(form.uploadDir, project.name + '_' + file.name));
+            fs.rename(file.path, path.join(form.uploadDir, project.name + '_' + number + extension));
+            number++;
         }
     });
 
@@ -99,6 +104,8 @@ router.delete('/', function(req, res) {
 router.post('/update', function(req, res) {
     // thuc hien viec nap du lieu va upload hinh
 
+    var number = 0;
+
     var project = [];
     var form = formidable.IncomingForm();
     var using = [];
@@ -123,12 +130,14 @@ router.post('/update', function(req, res) {
     });
 
     form.on('file', function(name, file) {
+        var extension = file.name.substring(file.name.indexOf('.'), file.name.length);
         form.multiples = true;
         form.uploadDir = path.join(__dirname, '../images');
-        if (file.name != '') {
-            images.push(project["name"] + '_' + file.name);
+        if (file.name !== '') {
+            images.push(project["name"] + '_' + number + extension);
             project[name] = images;
-            fs.rename(file.path, path.join(form.uploadDir, project.name + '_' + file.name));
+            fs.rename(file.path, path.join(form.uploadDir, project.name + '_' + number + extension));
+            number++;
         }
     });
 

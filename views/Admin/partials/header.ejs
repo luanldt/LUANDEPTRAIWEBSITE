@@ -3,14 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%=title %></title>
+    <title><%= title %></title>
 
-    <link href="/assets/Admin/css/main.min.css" rel="stylesheet">
-    <!--<link href="/assets/Admin/css/datepicker3.css" rel="stylesheet">-->
-    <!--<link href="/assets/Admin/css/styles.css" rel="stylesheet">-->
-    <!--<link href="/assets/Admin/css/bootstrap-table.css" rel="stylesheet">-->
-    <!--<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />-->
+    <!--<link href="/assets/Admin/css/main.min.css" rel="stylesheet">-->
+    <link href="/assets/Admin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/Admin/css/datepicker3.css" rel="stylesheet">
+    <link href="/assets/Admin/css/styles.css" rel="stylesheet">
+    <link href="/assets/Admin/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
     <link rel="icon" href="/assets/Admin/images/icon.png">
+    <link rel="stylesheet" href="/assets/Admin/css/jquery.fancybox.min.css">
     <!--Icons-->
     <script src="/assets/Admin/js/lumino.glyphs.js"></script>
 
@@ -39,7 +41,7 @@
                         <svg class="glyph stroked male-user">
                             <use xlink:href="#stroked-male-user"></use>
                         </svg>
-                        <%=user.Name%> <span class="caret"></span></a>
+                        <%= user.Name %> <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">
                                 <svg class="glyph stroked male-user">
@@ -87,7 +89,7 @@
                     <use xlink:href="#stroked-clipboard-with-paper"/>
                 </svg>
                 CV</a></li>
-        <li class="parent <%= active == 'Websites' ? 'active' : '' %>" >
+        <li class="parent <%= active == 'Websites' ? 'active' : '' %>">
             <a href="#">
 				<span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked app window with content"><use
                                 xlink:href="#stroked-app-window-with-content"/></svg> Websites</span>
@@ -111,7 +113,7 @@
                 </li>
             </ul>
         </li>
-        <li class="parent <%= active == 'Account' ? 'active' : '' %>" >
+        <li class="parent <%= active == 'Account' ? 'active' : '' %>">
             <a href="#">
 				<span data-toggle="collapse" href="#sub-item-2"><svg class="glyph stroked male user "><use
                                 xlink:href="#stroked-male-user"/></svg> Account</span>
@@ -135,11 +137,14 @@
                 </li>
             </ul>
         </li>
-        <li class="<%= active == 'Settings' ? 'active' : '' %>" ><a href="forms.html">
+        <li class="<%= active == 'Settings' ? 'active' : '' %>">
+            <a href="forms.html">
                 <svg class="glyph stroked gear">
                     <use xlink:href="#stroked-gear"/>
                 </svg>
-                Settings</a></li>
+                Settings
+            </a>
+        </li>
         <li role="presentation" class="divider"></li>
         <li><a href="login.html">
                 <svg class="glyph stroked monitor">
